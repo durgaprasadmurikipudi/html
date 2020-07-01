@@ -1,0 +1,300 @@
+Input types:\
+input type=text,email,password,button,radio,checkbox,color,date,file,submit.. and so many
+select
+textarea
+button
+fieldset
+datalist
+
+div and span used to group elements, span mainly to group inline elements
+
+css:
+grouping selectors:
+selector1, selectgor2, selector3 {
+  stylesa for all these 3 selectors
+}
+
+
+in inheritance, like when you apply style to body and h1 tag
+body styles are applied to h1 tags but only h1 tag styles are overrided in h1 elements and rest of the
+properties as same as of body style.
+
+But also that deosnt mean all the properties from body element get automatically applied to child elements.
+For example if you set border property on body, it will not automatically get applied to all child elements.
+
+a point about specificity, the selector which precisely selects a element, like more uniquely gets applied.
+if both have the same specificity then that style gets applied which comes at last in the file.
+
+colors can be specified by name, rgb, rgba(rgb with opacity), hex values
+
+coolors.co for nice theming
+
+css units:
+pixels depend on the resolution or screen size.
+on one screen they may look big, on another they look small.
+percent untis are relative units and are dependent on the parent element.
+
+em unit basically depends on the enclosing parent size. suppose parent size is declared as some 10px for font size and you declared
+2em for child, then its font size gonna be 20px.
+
+if there is no aprent element its gonna take browser default which is 16px.
+
+rem always take default value which is what html selector is set to, if its set to noene, then it wil lake browser value which generally is 
+16px.
+
+vh and vw respectively denote the height and width of the screen.
+
+to reset the browser defaults and set it to box model
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+if you see user agent style beside any stylesheet in dev tool, it means its provided by google chrome.
+
+generally height depends on the content, if no content height: 0, if width and height is restrcited and there is more content
+than could be accomadated then text overflows, which can be hidden by overflow 
+property, but if you wanna have a min heigh no matter what the content is you can use min-height.
+You can also control the maximum height that could be covered by max-height property.
+
+line-height if no unit is mentioned, takes the current elements font-size as base.
+
+There is also an outline property in box model. and it is awesome.generally ti is the thing that is surrounded by border.
+cool thing about it is it has postive offset and negative offset as wel!!
+
+Block elements always take the full width of the screen and start in a new line.
+Inline elements always span as much as their content and anot always start on a new line.
+
+To center a inline element all you have to do is keep text-align: center,
+where as for block elements, unless you control its width to be less than the screen width then there is no concept of centering,
+when its width is lessm apply margin: auto to make it center. To control its text indie, make it text-align: center.
+
+Browser respects height, width, margin, padding of a block element but padding, margin, height, width settings on an inline element
+doesn't get respected, in the sense that they will be applied only on context like for elements like a, margin left and right works
+but not margin top and bottom and so on. Where as for block element everything is respected.
+
+box-sizing border box menas, total width and height occupied of the element contains, content, padding and border.
+else if its content-box setting, then width:200, height: 200 is applied only for content, if you set padding, its a whole other 
+ara occupied again.
+
+display:none, popacity:0 and visibility: hidden, hide the element and except for the first property every thing else occupy
+the space.
+
+when having a background image, if it doesn't exactly fit the dimensions of the element, background-size: contain,
+will make the ratio of the whole image to fit according to the element dimensions, in the process it might not fill the 
+entire area of the element, but the whole image will be visible.
+contast to this, background-size: cover enlarges or dimnishes the image such that whole area is covered, but doesn't ensure
+that entire image is visible, it just makes the aspect ratio as such  the entire area is covered.
+'Contain' does exactly such that the whole area is covered and the whole image is displayed, but distorts the image quality.
+
+background-position, for the image that is either small or large for a element dimension, place it accordingly.
+for value, center, small image is placed at center, large image will have its center portion visible, rather than the top-left part
+they also take thae values, left, right, top, bottom and also in the form of x%, y%.
+
+and small iamge gets palced according, where as large image will have its part of image shown accordingly.
+in palce of 100% 100%, small image will be placed such that its right bottom corner touches its enclosing elemnt where as large
+image will be shown such that, its visble part of it will be shown starting from right-bottom.
+
+background=attachment has 2 va;ues fixed and scroll, scroll ,as you guessed responds to scroll and moves along, fixed value
+gives an effect of it being fixed to the screen and it it will get uncovered as you scroll to the image position,
+like as if some cover is being lifted starting from below...
+its effects can be seen better in example.
+
+float is generally sued for images and they maigically keep them in the direction they are want like only left and right.
+when this occurs block or inline elements, that immediately follow them lose their flow and wrap around this image.
+if you do not want this behavior you can apply clear property on the element that is follwing image.
+note that clear should also have the same value as the float property is having else it wont work.
+clear both just gets clears on all sides irrespectively.
+
+float can also be used on block elements in that case it would be equivalent to applying them as display: inline-block,
+ position:fixed, and if float left, then left:0 css is applied.
+
+ position, relative, also effects the elements around it!!!!!
+ no element would fill out the gap left by relative position.
+
+ Where as absolute although behaves as relative position, it takes the enclosing ancestor as reference to move which is having 
+ position value other than static, if none found, body element is taken as reference.
+ And also other elements fill out the gap left by absolute position. remember the gotcha that even if you do not apply
+ any top or left or any direction attributes, the elements follwing it immediately take its position, ofcourse overshadowed by
+ absolutely positioned element. To understand it better, absolute element immediately starts acting as soon as its declared 
+ and doesnot reserve space and just floats on the position its left to be in. if no direction attributes are specified,
+ it just occupies the element as ifs a relatively positioned element, then it ascends into the sky a bit above, the immediately 
+  following element will occupy its position.
+
+position fixed is abolsute except that its frame of reference for movement is always viewport and doesnt respond to scroll,
+elements jsut scroll past under it.
+
+position sticky needs atleast one of directional properties, top or bottom or left or right.
+then iintiially it behaves as relative and just stays in its position, without any element occupying its position,
+then once the directional property is satisified like top:20% then it immediately behaves as fixed.
+
+In responsive design, min width mean : starting from and max width means:  upto.
+
+be careful with max-width property.
+
+z-index would not work on position static
+
+::before and ::after pseudo elements create elements and inserts before and after content.
+now waht does this mean, it will not work on img as img itself is content, but will work on p tags as they enclose content.
+
+These should be declared as block elements or inline elements as needed. and their frame of reference would be the one being
+acted on like p or div, so if their position is declared as soemthing other than static, then these pseudo elements
+position can also be manipulated to the desired value.
+
+An usecase would be declaring a border for content that is present in div
+just declare like this
+div::before {
+  content: ''; // there should be atleast empty content else pseudo elements wont work
+  position: absolute; // it will take frame of reference as div.
+  width: 100%;
+  height: 100%; // if these are not set it wont enlose the content, it would just be inserted before content.
+  // now after setting these values, it will occupy all the area as that as parent element just like any other block element.
+  display: block; // to have the height and width getting manipulated
+  border: 2px solid blaack;
+  top: -40px;
+  left: -40px;
+  z-index: 2 // so that border doesn't disrupt content.
+}
+
+now every content would have a border slightly stylishly mispalced. Although this can be achieved in multiple ways
+this example just lets us understand pseudo elements properties.
+
+img to fit exactly in a div ,set its width to 100% and make it a block element
+
+selector1 selector 2 {
+  selects all selector2 elements however deeply nested under selector1
+}
+
+selector1 > selector2 {
+  selects all selector2 elements under selector1, only searches first level, no nested childrens deeper than level1 are selected.
+}
+
+a:link, all the links with href values and that are unvisted gets selected
+a: active as the user clicks and for all the pseudo selectors to work they should have href value.
+
+pseudo selector generally used to store all global variables.
+or for setting basic values like font-size.
+
+animation:
+transform applies some type of transformation to element along the x-axis or y-axis, like translate, rotate, scale, skew.
+transition on other hand is incharge of how transform should occur over period of time. it also works on things like button color 
+change when hovered.
+animation is anotehr proeprty which gives you more control than transition proeprty.
+
+transform: translateX(30px) moves element or more likes makes the element to float and move along 30 px from its point of origin
+towards right along x-axis by 30px. since its floating, it can override other element as well.
+scaleX or scaleY makes the element elongate across their respective axises, negative values shrink the respective elements.
+
+rotate just rotates the element by its center point
+rotate, rotatey and rotatez are tricky learn more about them visually
+same with the skew.
+
+transition is incharge og changing of css proeprties over time
+like you declared background to be red for a div , and then div:hover you set the the background to be coral.
+then transition-property: background; then backhground changes steadily 
+you can watch multiple proeprties in transition by combning with commas like,
+transition-property: background, border-radius;
+if yo uwant to assign times, transition-duration: 3s, 2s; respectively for each proeprty. these properties should be declared
+on the target element.
+
+shortcut is: transition: background 3s linear, baorder-radius 2s linear;
+you know what below means:
+transition: all 2s;
+
+there are two scopes for the css variables.
+root and element level
+:root { 
+  avaiable everywhere
+}
+
+div {
+  variables declared here, are avaiable only in div elements
+}
+
+varaibles are decalred like this 
+--varName: value;
+
+are referenced like this var(--varName)
+
+should I prefix. com to see what prefix to apply if we want to use experimetnal css features
+
+let browser prefixes be added by gulp or some npm module or some visual code extension.
+
+use
+
+img {
+  height: 400px;
+  object-fit: cover or contain;
+}
+
+for all the images to adjsut their aspect ratios to fit in their respective containers. there are other values available 
+like none, scale down etc.
+
+The difference between flexbox and inline-flexbox wouldbe flexbox acts on parent and makes it a block level element
+whereas inline-flex makes it inline-block, in this case container only only occupies the width needed by its children rather
+than whole width available.
+
+by default eitehr of the style makes all teh children inline-block elements.
+this is also equivalent to flex-direction: row;
+flex-dorection: row-reverse, the elements are essentially reversed in order.
+'column', stacked on one another, makes children as block elements; 'column-reverse', stacked on oen another but in reverse order.
+flex-wrap, by default no new row is created for children inside the container, all are in single row, a horizontal scroll bar
+is added if the length is not sufficient and children are let to overflow.
+'wrap': rows are created to accomodate the children as needed, just like word wrap in vs code.
+'wrap-reverse', order is reversed, but just liek wrap.
+
+justify-content: this is for horizontal adjustment.
+by default, flex-start, inline-block behavior, 
+'flex-end': elements are pushed to right end and any space is popped to left end.
+space-between: elements tend to have space in between, first and last element touch border.
+space-around: just like space-between, a little margin is given for first element and the left border,  and, last element and its right border.
+space-even: jsut like space-around except that space is evenly distributed.
+center: elemnts are strung together in middle, and margin auto.
+
+
+align-items for vertical alignment.
+by default align-items is set to stretch, even though children isndie container behave as inline block, they occupy the full
+height of container, tis becuase align items is set to default value 'stretch'.
+'flex-start', occupy height as needed and they start occupying at top.
+flex-end, just like above, except occupying starts at bottom.
+center, occuping starts at center.
+baseline, flexstart, except that all children are adjsuted vertically such that if there is an underline for the last line of
+content for every children, they will form  a straight line and if there is one straight line  which has 100% width,
+and passes one underline, it would all other underlines and that to parallel to viewport.
+contrast to baseline, flex start would have a straight line passing just above content of each children.
+so align items almost revolves around content placement and adjusting hte children accordingly.
+if there is wrap, then align-items have additional proeprties space-between , space-around.
+
+By default all the elements have order value 0, if any child element is given an order value greater than 1, it will move bakc to last
+position, as its order value is greater tahn all otehr elements.
+you can also apply thse proeprties indiviually  to each child as well.
+
+Flex-grow, if this proeprty is set to 1 for any child, it will occupy all the remaining space, if its applied for all children
+they grow equally to fill out the left out space. if only some children are given flex-grow: 1 then they will distribute themselves
+the remainign space and left out children will jsut occupy as that much as their content needs. 
+if you give different flex gros numbers to aeach child, the highest one takes the highest fraction aprt and second highest takes 
+the second highest fraction aprt.
+example, if child1 is given flex-grow:1 and child 2, is given 3 and child 3 is given 4.
+then 4 + 3 + 1, 8 parts.
+child 3 takes 4 parts of 8 parts of remainign space, child 2 3parts and child one gets only 1 part of remainign space out of 8 parts.
+we also have flex shrink just like flex grow.
+by default when there is not much available space, display: flex makes all the elements have same width and shrink in the same
+ratio!. so if you set flex-shrink:0 to any child, it will nto shrink, if you set it to all child, then horizontal scroll bar will
+be added as soon as container width is not enough and children get overflown.
+You can also shrink them in ratios just liek flex grow.
+So basically flex shrink preserves the width of the child.
+flex-basis, allwos child to have that as min width.
+shortcut is flex: grow shrink flex-basis;
+so flex: 1 0 200px; means, let the children grow to use all the avaialble space and shrink in smae aspect ratio and whenever there
+is space available let them have 200px. if flex wrap is set and a child got overflown, then let that childget into different row.
+basically make sure each children have atleast 200px and accordingly split into rows, if even after split, if no child each doesnt
+get 200px, then all shrink in same aspect rato, and ifg container width is greater than all teh childrens flex basis combined
+grow more than 200px such that all the remainign space is coccupied.
+no matter if flex basis is present or not, if child width is specified explicitly it might ignore flexbasis when flexgrow is not 
+set to 1. but if no exteranl width is specified, even if flexgrow is not there flexbasis let all the children occupy the remaining
+space as needed if flexbasis value is set. if its set like 25% and there are 4 children then all the remainign space will be 
+occupied.
+
+
+
