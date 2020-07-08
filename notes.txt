@@ -296,5 +296,78 @@ set to 1. but if no exteranl width is specified, even if flexgrow is not there f
 space as needed if flexbasis value is set. if its set like 25% and there are 4 children then all the remainign space will be 
 occupied.
 
+Grid column layout is most useful in scenarios where the columns are of different width, you have couple of children elements
+you have a beautiful grid layout in mind, grid css lets you put that in picture easily.
+syntax, declare whatever the contaienr as display: grid, now specifyu the layout in terms of grid-template-rows and 
+grid-template-columns. Tell what each row size should be and what each column size should be and the childrens are fit into that.
 
+Even when rows is mentioned, if there are more children than available row * columns sapce, then additional rows are created.
+For that additional row created, elements take their default size like width of child as dictated by grid-template-column,
+and heigth as much as available height of container.
+ 
+ Implicit grid layout, of you only mention  column layout, rows are created at will to accomate all the children present in
+ container.
+ You can mention units in terms of px, % rem, em, auto and fr.
+ The thing about auto is it just shrinks and grows in the available space.
+When additional row is created out of scope of grid-template-row, it is given height as auto. And that will take as much as avaialble height. But in case of width it is always dictated by grid-column 
 
+fr is like fraction, say you mention template as 1fr 1fr 1fr, then there will 3 columns or 3 parts and each will eb queal.
+if its like 1fr 2fr 1fr; then there will be 4 parts and middle one is gonna ake 2 parts and rest eahc takes 1 part of  all 
+available width.
+
+You can also mention gaps between rows and columns. There will be overflow. A grid always will be of size as template dictates.
+If there is gap, then it would not be accomadated within container but when contaienr is very small than the layout whole area,
+the layout overflow.
+
+Grid nomenclature, there are grid columns, rows. there are grid areas.  Agrid area can be 1*1, 1*2 or 1* whole columns 
+or whole rows * 5 or any combination of cells.
+A grid track is any specific column or row.
+So if you have a 3*3 grid layout, then it has line numbers each vertical column border has a number and each horizontal
+row border ahs a number. so for a 3*3 layout, there will be 4 vertical column numbers from 1 to 4, and you can refer to
+it when specifying hwo many columsn a c hild should occupy. Similarly for a row.
+Also first row numebr would be 1 or -4 in a 3*3 layout.
+so this is useful whewn you want to mention a child to occupy all the avaialble column cells. 
+you can simply say occupy till 1 to -1.
+Syntax would be like , specifically select taht child by a selector and say
+grid-column-start: 1, grid-column-end: -1; or simply grid-column: 1/-1;
+same for grid row.
+
+You can also name the grid lines..
+grid-template-row: [start] 100px 100px [end-before-line]100px [end];
+now the line 1 is nbamed start and line 3 is named end-before -line as the name is placed right after 2nd box and line 4 is named
+end.
+you can also give areas names like this.
+grid-template-rows: repeat(5, 100px);
+grid-template-columns: repeat(3, 1fr);
+grid-template-areas: 
+'a a b'
+'a a b'
+'c c b'
+'d d d'
+'e f f'
+Now there are 5 areas, area startging from 1st cell spanning 2 cols and 2 rows is called 'a' and so on.
+And I think you will recognize what repeat function above does.
+
+ and you can select specif element using slector sysntax and set it to any area mentioned above like
+ h1 p {
+   grid-area: c;
+ }
+
+ order proeprty, b ydefault every child element in grid layout has order 0, and they are layed out one by one, if any of elements order 
+ value is changed, they are sorted to first or last based on their order value.
+ And then laid out in the grid area starting fro mthe lowest order value item and so on...
+
+You know what justify-content, align-items, align-self, justify-self can still be applied in gird layout.
+And they will work accordingly. by defaalt jsutify-items and align-items will have stretch value,
+as soon as chaneg them to flex-start or any of flex values, they behave in the way in flexbox fashion.
+This only works if there is sufficient height and you did not mention grid layout in terms of auto or fr units.
+
+minmax, this function tells what would be the minimum width and maximum width that child in that specified column can occupy.
+minwidth(200px, 1fr) means width can never be shorter than 200px and there is no upper limit on max width.
+
+repeat(auto-fit, 200px) behaves like flex box, the children have width of 200px and will elongate if needed to fit in the available 
+width in a saem row, if no space avaialbe they will go into another row.
+repeat(auot-fit, min(200px, 1fr)) means, every coolumn has 200px min width, anbd if there are 6 columns and every thing can be 
+accomaded they will occupy one row and need be, elongatge they will to occupy the entire space available
+else they will form into anotehr row.
+auto-fit generally overrides that fr part and will not elongate to occupy the available width.
