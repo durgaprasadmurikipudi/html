@@ -371,3 +371,11 @@ repeat(auot-fit, min(200px, 1fr)) means, every coolumn has 200px min width, anbd
 accomaded they will occupy one row and need be, elongatge they will to occupy the entire space available
 else they will form into anotehr row.
 auto-fit generally overrides that fr part and will not elongate to occupy the available width.
+
+The simple difference between auto fit and auto fill is that if there is only oen card lets say, then auto-fit,
+elongates that card to fit the screen, auto-fill, will still maintain the card width as per tis content needs as much 
+as possible, but then after wards fills the remaining space with empty columns of same size as of the first card.
+
+object fit works in changing the aspect ratio, or showing a part of image so that they do not get 
+distorted, but if you want image to be controlled, like sizing it to fit in a container exactly,
+change its display property and manipulate its height and width. 
